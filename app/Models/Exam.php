@@ -11,6 +11,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Exam extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'describe',
+        'user_id',
+        'categry_id',  
+    ];
 
     public function user(): BelongsTo
     {
