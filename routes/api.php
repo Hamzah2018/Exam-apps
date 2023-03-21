@@ -22,3 +22,4 @@ use App\Http\Controllers\Api\ExamController;
 Route::get('/exams',[ExamController::class, 'index']);
 Route::get('/exam/{id}',[ExamController::class, 'show']);
 Route::post('/exams',[ExamController::class, 'store']);
+Route::post('/exam/{id}',[ExamController::class, 'update']);

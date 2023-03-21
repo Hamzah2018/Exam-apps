@@ -17,9 +17,10 @@ class ExamResource extends JsonResource
         // return parent::toArray($request);
         return[
             'Number'=>$this->id,
-            'Exam Name'=>$this->name,
+            'Exam Ename'=>$this->name,
             'Exam Describe'=>$this->describe,
-
+            // 'user_id' =>$this->user_id,
+            // 'categry_id' =>$this->categry_id,
         ];
     }
 }
