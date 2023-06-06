@@ -29,9 +29,14 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
-
 Route::get('/exams',[ExamController::class, 'index']);
+Route::group(['middleware' => ['jwt.verify']], function() {
+    // Route::get('user', 'UserController@getAuthenticatedUser');
+    // Route::get('closed', 'DataController@closed');
 Route::get('/exam/{id}',[ExamController::class, 'show']);
 Route::post('/exams',[ExamController::class, 'store']);
 Route::post('/exam/{id}',[ExamController::class, 'update']);
 Route::post('/examdelete/{id}',[ExamController::class, 'destroy']);
+
+});
+
