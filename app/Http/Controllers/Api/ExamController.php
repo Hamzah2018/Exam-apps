@@ -66,11 +66,23 @@ class ExamController extends Controller
                 $exam->update($request->all());
 
                 if($exam){
-                    return $this->apiResponse(new ExamResource($exam), 'ok', 201);
+                    return $this->apiResponse(new ExamResource($exam), 'Exam Update', 201);
                 }
 
                 return $this->apiResponse(null,'this Exam not Update',404);
         }
 
-    
+        function destroy($id){
+            $exam =  Exam::find($id);
+            if(!$exam){
+                return $this->apiResponse(null,'The Exam Not Found',404);
+            }
+            $exam->delete($id);
+
+            if($exam){
+                return $this->apiResponse(null, 'The Exam Deleted', 200);
+            }
+        }
+
+
 }
