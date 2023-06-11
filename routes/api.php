@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\RoleEnum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ExamController;
@@ -34,9 +35,9 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     // Route::get('user', 'UserController@getAuthenticatedUser');
     // Route::get('closed', 'DataController@closed');
 Route::get('/exam/{id}',[ExamController::class, 'show']);
-Route::post('/exams',[ExamController::class, 'store']);
-Route::post('/exam/{id}',[ExamController::class, 'update']);
-Route::post('/examdelete/{id}',[ExamController::class, 'destroy']);
+Route::post('/exams',[ExamController::class, 'store'])->middleware(['auth', 'role:' . RoleEnum::SUPER_ADMIN]);
+Route::post('/exam/{id}',[ExamController::class, 'update'])->middleware(['auth', 'role:' . RoleEnum::SUPER_ADMIN]);
+Route::post('/examdelete/{id}',[ExamController::class, 'destroy'])->middleware(['auth', 'role:' . RoleEnum::SUPER_ADMIN]);
 
 });
 
